@@ -103,31 +103,36 @@
 
     <!-- ======= Works Section ======= -->
     <section class="section site-portfolio">
-      <div class="container">
-        <div class="row mb-5 align-items-center">
-          <div class="col-md-12 col-lg-6 mb-4 mb-lg-0" data-aos="fade-up">
-            <h2>商品瀏覽</h2>
-            <p class="mb-0">.....</p>
-          </div>
-          <div class="col-md-12 col-lg-6 text-start text-lg-end" data-aos="fade-up" data-aos-delay="100">
-            <div id="filters" class="filters">
-              <a href="#" data-filter="*" class="active">全部項目</a>
-              <a href="#" data-filter=".a">妝前</a>
-              <a href="#" data-filter=".b">底妝</a>
-              <a href="#" data-filter=".c">眼妝</a>
-              <a href="#" data-filter=".d">加強局部</a>
-              <a href="#" data-filter=".e">唇彩</a>
+        <div class="container">
+            <div class="row mb-5 align-items-center">
+                <div class="col-md-12 col-lg-6 mb-4 mb-lg-0" data-aos="fade-up">
+                    <h2>商品瀏覽</h2>
+                    <p class="mb-0">.....</p>
+                </div>
+                <div class="col-md-12 col-lg-6 text-start text-lg-end" data-aos="fade-up" data-aos-delay="100">
+                    <div class="filters">
+                        <label for="category-filter">選擇類別:</label>
+                        <select id="category-filter">
+                            <option value="*">全部項目</option>
+                            <option value=".a">妝前</option>
+                            <option value=".b">底妝</option>
+                            <option value=".c">眼妝</option>
+                            <option value=".d">加強局部</option>
+                            <option value=".e">唇彩</option>
+                        </select>
+
+                        <label for="price-filter">價格過濾:</label>
+                        <select id="price-filter">
+                            <option value="*">全部</option>
+                            <option value=".ioo">100↓</option>
+                            <option value=".eoo">100 ~ 500</option>
+                            <option value=".iooo">500 ~ 1000</option>
+                            <option value=".booo">1000 ~ 2000</option>
+                            <option value=".cooo">2000↑</option>
+                        </select>
+                    </div>
+                </div>
             </div>
-            <div id="filters" class="filters">
-              <a>價格過濾</a>
-                <a href="#" data-filter=".ioo">100↓</a>
-                <a href="#" data-filter=".eoo">100 ~ 500</a>
-                <a href="#" data-filter=".iooo">500 ~ 1000</a>
-                <a href="#" data-filter=".booo">1000 ~ 2000</a>
-                <a href="#" data-filter=".cooo">2000↑</a>
-            </div>
-          </div>
-        </div>
         <div id="portfolio-grid" class="row no-gutter" data-aos="fade-up" data-aos-delay="200">
           <div class="item e col-sm-6 col-md-4 col-lg-4 mb-4">
             <a href="work-single.html" class="item-wrap fancybox">
@@ -237,6 +242,30 @@
         </div>
       </div>
     </section><!-- End Clients Section -->
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // 初始化Isotope
+            var $grid = $('#portfolio-grid').isotope({
+                itemSelector: '.item',
+                layoutMode: 'fitRows'
+            });
+
+            // 監聽類別下拉選單的變化
+            $('#category-filter').on('change', function () {
+                var filterValue = this.value;
+                $grid.isotope({ filter: filterValue });
+            });
+
+            // 監聽價格下拉選單的變化
+            $('#price-filter').on('change', function () {
+                var filterValue = this.value;
+                $grid.isotope({ filter: filterValue });
+            });
+        });
+    </script>
 
     <!-- ======= Services Section ======= -->
     <section class="section services">
